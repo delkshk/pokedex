@@ -1,39 +1,39 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 import { StyleSheet, Text, View } from "react-native";
-const LoadingPlaceHolder = () =>{
-  return(
-    <View style={[styles.card,styles.cardLoading]}>
-       <Text style={styles.PktName}>Carregando...</Text>
+import { Link } from "react-router-native";
+const LoadingPlaceHolder = () => {
+  return (
+    <View style={[styles.card, styles.cardLoading]}>
+      <Text style={styles.PktName}>Carregando...</Text>
     </View>
-  )
-}
+  );
+};
 const PokemonCard = ({ children, ...props }) => {
   return (
-    <LazyLoad
-      placeholder={<LoadingPlaceHolder/>}
-      style={{ width: 100 + "%" }}
-    >
-      <View style={styles.card} {...props}>
-        <View style={styles.PktNameContainer}>
-          <Text style={styles.PktID}>#{props.id}</Text>
-          <Text style={styles.PktName}>{props.name}</Text>
+    <LazyLoad placeholder={<LoadingPlaceHolder />} style={{ width: 100 + "%" }}>
+      <Link to={"/"+props.id}>
+        <View style={styles.card} {...props}>
+          <View style={styles.PktNameContainer}>
+            <Text style={styles.PktID}>#{props.id}</Text>
+            <Text style={styles.PktName}>{props.name}</Text>
+          </View>
+          <img
+            style={{
+              width: "auto",
+              position: "absolute",
+              right: 0,
+              height: 180 + "px",
+            }}
+            src={
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+              props.id +
+              ".png"
+            }
+            alt={props.name}
+          />
         </View>
-        <img
-          style={{
-            width: "auto",
-            position: "absolute",
-            right: 0,
-            height: 180 + "px",
-          }}
-          src={
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
-            props.id +
-            ".png"
-          }
-          alt={props.name}
-        />
-      </View>
+      </Link>
     </LazyLoad>
   );
 };
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     minHeight: 10 + "em",
     boxShadow: "0px 7px 20px 0px #0000004f",
   },
-  cardLoading:{
+  cardLoading: {
     backgroundColor: "#757575",
   },
   PktName: {

@@ -12,7 +12,7 @@ const HomeFeed = () => {
       const json = await response.json();
       setPkto(json);
       window.localStorage.setItem("getPokemons", JSON.stringify(json));
-      console.log("request: " + json);
+      // console.log("request: " + json);
     } else {
       const dataPokemons = window.localStorage.getItem("getPokemons");
       const json = JSON.parse(dataPokemons);

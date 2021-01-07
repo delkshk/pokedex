@@ -7,3 +7,11 @@ export function ALLPOKEMONS_GET() {
         }
     }
 }
+export function POKEMONINFO_GET(pokemonID) {
+    return{
+        url : API_URL+"/pokemon/"+pokemonID,
+        options:{
+            method: "GET"
+        }
+    }
+}
